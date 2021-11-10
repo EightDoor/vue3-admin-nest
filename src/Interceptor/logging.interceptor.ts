@@ -21,7 +21,7 @@ export default class LoggingInterceptor implements NestInterceptor {
     const [req] = context.getArgs();
     const now = Date.now();
     return next.handle().pipe(map((val) => {
-      if (!val.code) {
+      if (val.code === undefined) {
         return R.success(val);
       }
       return val;

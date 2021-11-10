@@ -50,6 +50,9 @@ async function bootstrap() {
     },
   );
 
+  // 统一路由前缀
+  app.setGlobalPrefix('/api');
+
   // swagger
   const config = new DocumentBuilder()
     .setTitle('react-nest-admin后台管理')
