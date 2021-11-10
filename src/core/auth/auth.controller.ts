@@ -10,6 +10,7 @@ import { ApiBody, ApiHeader, ApiTags } from '@nestjs/swagger';
 import { AuthService, ReToken } from './auth.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { LoginEntiry } from './login.entity';
+import { RType } from '../../utils/R';
 
 @ApiTags('验证auth')
 @Controller('auth')
@@ -29,7 +30,7 @@ export class AuthController {
     },
   })
   @Post('login')
-  async login(@Body() body: LoginEntiry): Promise<ReToken> {
+  async login(@Body() body: LoginEntiry): Promise<RType<ReToken>> {
     return this.authService.login(body);
   }
 

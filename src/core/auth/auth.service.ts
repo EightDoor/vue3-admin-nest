@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import config from 'src/config';
 import { UserService } from 'src/core/sys/user/user.service';
 import utils from 'src/utils';
-import { uniq as UniqLoda } from 'lodash';
+import { uniq as UniqLoad } from 'lodash';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { SysRoleMenu } from '../sys/role/roleMenu.entity';
@@ -12,6 +12,7 @@ import { SysUserRole } from '../sys/user/userRole.entity';
 import { SysRole } from '../sys/role/role.entity';
 import { SysMenu } from '../sys/menu/menu.entity';
 import { LoginEntiry } from './login.entity';
+import R, { RType } from '../../utils/R';
 
 export interface ReToken {
   accessToken?: string;
@@ -60,7 +61,7 @@ export class AuthService {
     return null;
   }
 
-  async login(body: LoginEntiry): Promise<ReToken> {
+  async login(body: LoginEntiry): Promise<RType<ReToken>> {
     const user = await this.userRepo
       .createQueryBuilder()
       .where('account = :account AND pass_word=:pass_word', {
@@ -69,23 +70,23 @@ export class AuthService {
       })
       .getOne();
     const payload: Payload = { username: '', userId: 0 };
-    let result: ReToken = {
+    let result = R.error<ReToken>({
       msg: '用户名或者密码错误',
-    };
+    });
     if (user) {
       payload.username = user.account;
       payload.userId = user.id;
-      result = {
+      result = R.success<ReToken>({
         accessToken: this.jwtService.sign(payload),
         expiresIn: config.expiresIn,
         msg: 'success',
-      };
+      });
     }
 
     return result;
   }
 
-  async getUserInfo(payload: Payload): Promise<GetUserInfoR> {
+  async getUserInfo(payload: Payload): Promise<RType<GetUserInfoR>> {
     // 查询用户是否有效
     const user = await this.userRepo.findOne(payload.userId);
     // 查询用户的拥有角色
@@ -124,17 +125,17 @@ export class AuthService {
 
     if (menusId.length > 0) {
       // 去重
-      UniqLoda(menusId);
+      UniqLoad(menusId);
     }
     const menus = await this.menu.findByIds(menusId);
     //    this.logger.debug(`获取到的用户是${payload.userId} -> ${payload.username}`);
     //    this.logger.debug(`获取到的菜单是${JSON.stringify(menus)}`);
     //    this.logger.debug(`获取到的角色是${JSON.stringify(roles)}`);
     // TOOD 可以查询用户相关的更多信息
-    return {
+    return R.success<GetUserInfoR>({
       userInfo: user,
       menus,
       roles,
-    };
+    });
   }
 }

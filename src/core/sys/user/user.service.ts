@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CrudRequest } from '@nestjsx/crud';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
@@ -13,6 +13,7 @@ export class UserService extends TypeOrmCrudService<SysUser> {
     @InjectRepository(SysUser) repo: Repository<SysUser>,
     @InjectRepository(SysUserRole)
     private readonly userRole: Repository<SysUserRole>,
+    private readonly logger:Logger,
   ) {
     super(repo);
   }
@@ -20,6 +21,7 @@ export class UserService extends TypeOrmCrudService<SysUser> {
   createOne(req: CrudRequest, dto: SysUser): Promise<SysUser> {
     const data = dto;
     data.passWord = utils.PasswordEncryPtion(data.passWord);
+    this.logger.log(data);
     return this.repo.save(data);
   }
 

@@ -24,5 +24,6 @@ module.exports = {
     'no-useless-constructor': 'off',
     'no-empty-function': 'off',
     'no-await-in-loop': 'off',
+    'import/extensions': 'off',
   },
 };

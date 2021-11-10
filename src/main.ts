@@ -1,4 +1,4 @@
-import 'reflect-metadata'; // 引入一下
+import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
 import { CrudConfigService } from '@nestjsx/crud';
 import {
@@ -6,9 +6,10 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+import { WinstonModule } from 'nest-winston';
+import * as winston from 'winston';
+import { utilities as nestWinstonModuleUtilities } from 'nest-winston/dist/winston.utilities';
 import { AppModule } from './app.module';
-// 申明appModule之前
 // crud全局配置
 CrudConfigService.load({
   query: {
@@ -34,12 +35,20 @@ async function bootstrap() {
       // 关闭cors
       cors: false,
       // 关闭自带日志
-      logger: false,
+      logger: WinstonModule.createLogger({
+        level: 'silly',
+        transports: [
+          new winston.transports.Console({
+            format: winston.format.combine(
+              winston.format.timestamp(),
+              winston.format.ms(),
+              nestWinstonModuleUtilities.format.nestLike('vue3-admin-nest', { prettyPrint: true }),
+            ),
+          }),
+        ],
+      }),
     },
   );
-  // logger
-  const nestWinston = app.get(WINSTON_MODULE_NEST_PROVIDER);
-  app.useLogger(nestWinston);
 
   // swagger
   const config = new DocumentBuilder()
