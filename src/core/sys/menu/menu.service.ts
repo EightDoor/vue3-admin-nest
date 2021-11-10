@@ -7,6 +7,6 @@ import { SysMenu } from './menu.entity';
 @Injectable()
 export class MenuService extends TypeOrmCrudService<SysMenu> {
   constructor(@InjectRepository(SysMenu) repo: Repository<SysMenu>) {
-    super(repo)
+    super(repo);
   }
 }

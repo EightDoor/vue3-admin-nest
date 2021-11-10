@@ -7,6 +7,6 @@ import { SysDept } from './dept.entity';
 @Injectable()
 export class DeptService extends TypeOrmCrudService<SysDept> {
   constructor(@InjectRepository(SysDept) repo: Repository<SysDept>) {
-    super(repo)
+    super(repo);
   }
 }

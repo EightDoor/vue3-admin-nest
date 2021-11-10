@@ -5,11 +5,11 @@ import { JwtAuthGuard } from 'src/core/auth/jwt-auth.guard';
 import { SysDict } from './dict.entity';
 import { DictService } from './dict.service';
 
-@ApiTags("字典管理")
+@ApiTags('字典管理')
 @Crud({
   model: {
-    type: SysDict
-  }
+    type: SysDict,
+  },
 })
 @UseGuards(JwtAuthGuard)
 @Controller('dict')

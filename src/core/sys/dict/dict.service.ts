@@ -7,6 +7,6 @@ import { SysDict } from './dict.entity';
 @Injectable()
 export class DictService extends TypeOrmCrudService<SysDict> {
   constructor(@InjectRepository(SysDict) repo: Repository<SysDict>) {
-    super(repo)
+    super(repo);
   }
 }

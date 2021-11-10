@@ -8,7 +8,9 @@ export class SysUserRoleService {
   constructor(
     @InjectRepository(SysUserRole)
     private readonly repo: Repository<SysUserRole>,
-  ) {}
+  ) {
+    //
+  }
 
   async getUserRoleList(id: string): Promise<SysUserRole> {
     let value = { id: 0 };
@@ -29,6 +31,6 @@ export class SysUserRoleService {
       .where('user_id = :id', { id: body.userId })
       .delete()
       .execute();
-    return await this.repo.save(body);
+    return this.repo.save(body);
   }
 }

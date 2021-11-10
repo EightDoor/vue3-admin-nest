@@ -1,24 +1,28 @@
 module.exports = {
+  env: {
+    es2021: true,
+    node: true,
+  },
+  extends: [
+    'airbnb-base',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: 'tsconfig.json',
+    ecmaVersion: 13,
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint/eslint-plugin'],
-  extends: [
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'prettier',
-    'prettier/@typescript-eslint',
+  plugins: [
+    '@typescript-eslint',
   ],
-  root: true,
-  env: {
-    node: true,
-    jest: true,
-  },
   rules: {
-    '@typescript-eslint/interface-name-prefix': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
+    'import/prefer-default-export': 'off',
+    'class-methods-use-this': 'off',
+    'no-console': 'off',
+    'import/no-unresolved': 'off',
+    'import/no-import-module-exports': 'off',
+    'no-unused-vars': 'off',
+    'no-useless-constructor': 'off',
+    'no-empty-function': 'off',
+    'no-await-in-loop': 'off',
   },
 };

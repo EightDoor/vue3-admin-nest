@@ -7,6 +7,6 @@ import { DictService } from './dict.service';
 @Module({
   imports: [TypeOrmModule.forFeature([SysDict])],
   controllers: [DictController],
-  providers: [DictService]
+  providers: [DictService],
 })
 export class DictModule { }

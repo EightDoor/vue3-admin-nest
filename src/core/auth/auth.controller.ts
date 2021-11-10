@@ -10,6 +10,7 @@ import { ApiBody, ApiHeader, ApiTags } from '@nestjs/swagger';
 import { AuthService, ReToken } from './auth.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { LoginEntiry } from './login.entity';
+
 @ApiTags('验证auth')
 @Controller('auth')
 export class AuthController {
@@ -39,7 +40,7 @@ export class AuthController {
   })
   @UseGuards(JwtAuthGuard)
   @Get('userInfo')
-  async getUserInfo(@Request() req: any): Promise<any> {
-    return await this.authService.getUserInfo(req.user);
+  getUserInfo(@Request() req: any): Promise<any> {
+    return this.authService.getUserInfo(req.user);
   }
 }

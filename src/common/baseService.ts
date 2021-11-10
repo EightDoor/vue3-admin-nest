@@ -1,4 +1,6 @@
-import { DeleteResult, FindConditions, ObjectID, RemoveOptions, Repository, SaveOptions } from 'typeorm';
+import {
+  DeleteResult, FindConditions, ObjectID, RemoveOptions, Repository, SaveOptions,
+} from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 
@@ -8,16 +10,17 @@ import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity
 @Injectable()
 export class BaseService<T> {
   protected readonly repository: Repository<T>;
+
   constructor(repository: Repository<T>) {
     this.repository = repository;
   }
 
   async saveOne(entity: T, options?: SaveOptions): Promise<T> {
-    return this.repository.save(entity, options)
+    return this.repository.save(entity, options);
   }
 
   async saveMany(entities: T[], options?: SaveOptions): Promise<T[]> {
-    return this.repository.save(entities, options)
+    return this.repository.save(entities, options);
   }
 
   async findOne(options?: FindConditions<T>): Promise<T | undefined> {
@@ -25,28 +28,31 @@ export class BaseService<T> {
   }
 
   async findMany(options?: FindConditions<T>): Promise<T[]> {
-    return this.repository.find(options)
+    return this.repository.find(options);
   }
 
   async findAll(): Promise<T[]> {
-    return this.repository.find()
+    return this.repository.find();
   }
 
   async removeOne(entity: T, options?: RemoveOptions): Promise<T> {
-    return this.repository.remove(entity, options)
+    return this.repository.remove(entity, options);
   }
 
   async removeMany(entity: T[], options: RemoveOptions): Promise<T[]> {
-    return this.repository.remove(entity, options)
+    return this.repository.remove(entity, options);
   }
 
-  async delete(options: string | string[] | number | number[] | Date | Date[] | ObjectID | ObjectID[] | FindConditions<T>): Promise<DeleteResult> {
-    return this.repository.delete(options)
+  async delete(options: any): Promise<DeleteResult> {
+    return this.repository.delete(options);
   }
 
-  async update(conditions: number | FindConditions<T>, newValue: QueryDeepPartialEntity<T>): Promise<number> {
-    let updateResult = 1;
-    await this.repository.update(conditions, newValue).catch(() => updateResult = 0);
+  async update(
+    conditions: number | FindConditions<T>,
+    newValue: QueryDeepPartialEntity<T>,
+  ): Promise<number> {
+    const updateResult = 1;
+    await this.repository.update(conditions, newValue);
     return updateResult;
   }
 }

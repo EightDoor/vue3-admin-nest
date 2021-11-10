@@ -5,11 +5,11 @@ import { JwtAuthGuard } from 'src/core/auth/jwt-auth.guard';
 import { SysDept } from './dept.entity';
 import { DeptService } from './dept.service';
 
-@ApiTags("部门管理")
+@ApiTags('部门管理')
 @Crud({
   model: {
-    type: SysDept
-  }
+    type: SysDept,
+  },
 })
 @UseGuards(JwtAuthGuard)
 @Controller('dept')

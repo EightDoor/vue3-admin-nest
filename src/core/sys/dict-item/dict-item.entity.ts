@@ -1,64 +1,64 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { CrudValidationGroups } from "@nestjsx/crud";
-import { IsNotEmpty } from "class-validator";
-import { BaseColumn } from "src/common/baseModal";
-import { Column, Entity } from "typeorm";
-const { CREATE, UPDATE } = CrudValidationGroups
+import { ApiProperty } from '@nestjs/swagger';
+import { CrudValidationGroups } from '@nestjsx/crud';
+import { IsNotEmpty } from 'class-validator';
+import { BaseColumn } from 'src/common/baseModal';
+import { Column, Entity } from 'typeorm';
 
-@Entity("sys_dict_item")
+const { CREATE, UPDATE } = CrudValidationGroups;
+
+@Entity('sys_dict_item')
 export class SysDictItem extends BaseColumn {
-
   @ApiProperty({
-    description: "数据值",
+    description: '数据值',
   })
   @IsNotEmpty({
-    groups: [CREATE, UPDATE]
+    groups: [CREATE, UPDATE],
   })
   @Column({
-    name: "value",
-    type: "varchar",
+    name: 'value',
+    type: 'varchar',
     length: 100,
-    comment: "数据值",
+    comment: '数据值',
   })
-  value!: string;
+    value!: string;
 
   @ApiProperty({
-    description: "名称",
+    description: '名称',
   })
   @IsNotEmpty({
-    groups: [CREATE, UPDATE]
+    groups: [CREATE, UPDATE],
   })
   @Column({
-    name: "label",
-    type: "varchar",
+    name: 'label',
+    type: 'varchar',
     length: 100,
-    comment: "名称",
+    comment: '名称',
   })
-  label!: string;
+    label!: string;
 
   @ApiProperty({
-    description: "字典id",
+    description: '字典id',
   })
   @IsNotEmpty({
-    groups: [CREATE, UPDATE]
+    groups: [CREATE, UPDATE],
   })
   @Column({
-    name: "dict_id",
-    type: "int",
-    comment: "字典id",
+    name: 'dict_id',
+    type: 'int',
+    comment: '字典id',
   })
-  dictId!: number;
+    dictId!: number;
 
   @ApiProperty({
-    description: "描述",
-    required: false
+    description: '描述',
+    required: false,
   })
   @Column({
-    name: "describe",
-    type: "varchar",
+    name: 'describe',
+    type: 'varchar',
     length: 255,
-    comment: "描述",
-    nullable: true
+    comment: '描述',
+    nullable: true,
   })
-  describe!: string;
+    describe!: string;
 }

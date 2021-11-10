@@ -1,38 +1,39 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { CrudValidationGroups } from "@nestjsx/crud";
-import { IsNotEmpty } from "class-validator";
-import { BaseColumn } from "src/common/baseModal";
-import { Column, Entity } from "typeorm";
-const { CREATE, UPDATE } = CrudValidationGroups
+import { ApiProperty } from '@nestjs/swagger';
+import { CrudValidationGroups } from '@nestjsx/crud';
+import { IsNotEmpty } from 'class-validator';
+import { BaseColumn } from 'src/common/baseModal';
+import { Column, Entity } from 'typeorm';
 
-@Entity("sys_role_menu")
+const { CREATE, UPDATE } = CrudValidationGroups;
+
+@Entity('sys_role_menu')
 export class SysRoleMenu extends BaseColumn {
   @ApiProperty({
-    description: "角色id",
-    required: true
+    description: '角色id',
+    required: true,
   })
   @IsNotEmpty({
-    groups: [CREATE, UPDATE]
+    groups: [CREATE, UPDATE],
   })
   @Column({
-    name: "role_id",
-    type: "int",
-    comment: "角色id"
+    name: 'role_id',
+    type: 'int',
+    comment: '角色id',
   })
-  roleId?: number; 
-  
+    roleId?: number;
+
   @ApiProperty({
-    description: "菜单id",
-    required: true
+    description: '菜单id',
+    required: true,
   })
   @IsNotEmpty({
-    groups: [CREATE, UPDATE]
+    groups: [CREATE, UPDATE],
   })
   @Column({
-    name: "menu_id",
-    type: "varchar",
+    name: 'menu_id',
+    type: 'varchar',
     length: 255,
-    comment: "菜单id"
+    comment: '菜单id',
   })
-  menuId?: string;
+    menuId?: string;
 }

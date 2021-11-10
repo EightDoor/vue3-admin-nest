@@ -3,6 +3,7 @@ import { CrudValidationGroups } from '@nestjsx/crud';
 import { IsNotEmpty } from 'class-validator';
 import { BaseColumn } from 'src/common/baseModal';
 import { Column, Entity } from 'typeorm';
+
 const { CREATE, UPDATE } = CrudValidationGroups;
 
 @Entity('sys_user_role')
@@ -19,7 +20,7 @@ export class SysUserRole extends BaseColumn {
     type: 'int',
     comment: '角色id',
   })
-  userId?: number;
+    userId?: number;
 
   @ApiProperty({
     description: '角色id',
@@ -34,5 +35,5 @@ export class SysUserRole extends BaseColumn {
     length: 255,
     comment: '角色id',
   })
-  roleId?: string;
+    roleId?: string;
 }

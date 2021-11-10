@@ -5,11 +5,11 @@ import { JwtAuthGuard } from 'src/core/auth/jwt-auth.guard';
 import { SysMenu } from './menu.entity';
 import { MenuService } from './menu.service';
 
-@ApiTags("菜单管理")
+@ApiTags('菜单管理')
 @Crud({
   model: {
-    type: SysMenu
-  }
+    type: SysMenu,
+  },
 })
 @UseGuards(JwtAuthGuard)
 @Controller('menu')

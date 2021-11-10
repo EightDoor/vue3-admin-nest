@@ -5,11 +5,11 @@ import { JwtAuthGuard } from 'src/core/auth/jwt-auth.guard';
 import { SysDictItem } from './dict-item.entity';
 import { DictItemService } from './dict-item.service';
 
-@ApiTags("字典项")
+@ApiTags('字典项')
 @Crud({
   model: {
-    type: SysDictItem
-  }
+    type: SysDictItem,
+  },
 })
 @UseGuards(JwtAuthGuard)
 @Controller('dict-item')

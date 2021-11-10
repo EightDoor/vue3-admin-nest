@@ -3,14 +3,14 @@ import { JwtService } from '@nestjs/jwt';
 import config from 'src/config';
 import { UserService } from 'src/core/sys/user/user.service';
 import utils from 'src/utils';
+import { uniq as UniqLoda } from 'lodash';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { SysRoleMenu } from '../sys/role/roleMenu.entity';
 import { SysUser } from '../sys/user/user.entity';
 import { SysUserRole } from '../sys/user/userRole.entity';
-import { uniq as UniqLoda } from 'lodash';
 import { SysRole } from '../sys/role/role.entity';
 import { SysMenu } from '../sys/menu/menu.entity';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { LoginEntiry } from './login.entity';
 
 export interface ReToken {
@@ -47,7 +47,7 @@ export class AuthService {
     username: string,
     password: string,
   ): Promise<SysUser | null> {
-//    this.logger.debug(utils.PasswordEncryPtion(password));
+    //    this.logger.debug(utils.PasswordEncryPtion(password));
     const user = await this.userService.findOne({
       where: {
         account: username,
@@ -104,7 +104,7 @@ export class AuthService {
     // 查询角色菜单
     let roleMenus: SysRoleMenu[] = [];
     if (roles.length > 0) {
-      for (let i = 0; i < roles.length; i++) {
+      for (let i = 0; i < roles.length; i += 1) {
         const item = roles[i];
         const r = await this.menuRepo
           .createQueryBuilder()
@@ -127,9 +127,9 @@ export class AuthService {
       UniqLoda(menusId);
     }
     const menus = await this.menu.findByIds(menusId);
-//    this.logger.debug(`获取到的用户是${payload.userId} -> ${payload.username}`);
-//    this.logger.debug(`获取到的菜单是${JSON.stringify(menus)}`);
-//    this.logger.debug(`获取到的角色是${JSON.stringify(roles)}`);
+    //    this.logger.debug(`获取到的用户是${payload.userId} -> ${payload.username}`);
+    //    this.logger.debug(`获取到的菜单是${JSON.stringify(menus)}`);
+    //    this.logger.debug(`获取到的角色是${JSON.stringify(roles)}`);
     // TOOD 可以查询用户相关的更多信息
     return {
       userInfo: user,
