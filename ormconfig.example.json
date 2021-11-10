@@ -1,0 +1,21 @@
+{
+  "type": "mysql",
+  "host": "127.0.0.1",
+  "port": 3306,
+  "username": "nest",
+  "password": "nest",
+  "database": "nest",
+  "entities": [
+    "dist/**/*.entity{.ts,.js}"
+  ],
+  "synchronize": false,
+  "logging": "all",
+  "cache": {
+    "type": "redis",
+    "options": {
+        "host": "localhost",
+        "port": 6379,
+        "password":"123456"
+    }
+  }
+}
