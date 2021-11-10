@@ -7,7 +7,6 @@ import {
   Body,
 } from '@nestjs/common';
 import { ApiBody, ApiHeader, ApiTags } from '@nestjs/swagger';
-import { Logger } from 'nestjs-pino';
 import { AuthService, ReToken } from './auth.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { LoginEntiry } from './login.entity';
@@ -16,7 +15,6 @@ import { LoginEntiry } from './login.entity';
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
-    private logger: Logger,
   ) {}
 
   // 登录

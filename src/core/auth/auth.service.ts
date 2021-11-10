@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Logger } from 'nestjs-pino';
 import config from 'src/config';
 import { UserService } from 'src/core/sys/user/user.service';
 import utils from 'src/utils';
@@ -32,7 +31,6 @@ interface GetUserInfoR {
 export class AuthService {
   constructor(
     private readonly userService: UserService,
-    private readonly logger: Logger,
     private readonly jwtService: JwtService,
     @InjectRepository(SysUserRole)
     private readonly repo: Repository<SysUserRole>,
@@ -49,7 +47,7 @@ export class AuthService {
     username: string,
     password: string,
   ): Promise<SysUser | null> {
-    this.logger.debug(utils.PasswordEncryPtion(password));
+//    this.logger.debug(utils.PasswordEncryPtion(password));
     const user = await this.userService.findOne({
       where: {
         account: username,
@@ -129,9 +127,9 @@ export class AuthService {
       UniqLoda(menusId);
     }
     const menus = await this.menu.findByIds(menusId);
-    this.logger.debug(`获取到的用户是${payload.userId} -> ${payload.username}`);
-    this.logger.debug(`获取到的菜单是${JSON.stringify(menus)}`);
-    this.logger.debug(`获取到的角色是${JSON.stringify(roles)}`);
+//    this.logger.debug(`获取到的用户是${payload.userId} -> ${payload.username}`);
+//    this.logger.debug(`获取到的菜单是${JSON.stringify(menus)}`);
+//    this.logger.debug(`获取到的角色是${JSON.stringify(roles)}`);
     // TOOD 可以查询用户相关的更多信息
     return {
       userInfo: user,

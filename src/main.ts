@@ -24,7 +24,6 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { Logger } from 'nestjs-pino';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -33,12 +32,11 @@ async function bootstrap() {
     {
       // 关闭cors
       cors: false,
-      // 关闭内置logger
-      logger: true,
     },
   );
   // logger
-  app.useLogger(app.get(Logger));
+
+
   // swagger
   const config = new DocumentBuilder()
     .setTitle('react-nest-admin后台管理')
