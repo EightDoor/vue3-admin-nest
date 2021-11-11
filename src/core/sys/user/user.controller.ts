@@ -21,7 +21,7 @@ export class UserController implements CrudController<SysUser> {
   constructor(
     public service: UserService,
     public userRoleService: SysUserRoleService,
-  ) {}
+  ) { }
 
   // 查询当前拥有角色
   @Get('roleList/:id')

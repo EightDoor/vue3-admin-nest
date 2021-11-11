@@ -22,11 +22,11 @@ import { TimeoutInterceptor } from './Interceptor/timeout.Interceptor';
       provide: APP_INTERCEPTOR,
       useClass: LoggingInterceptor,
     },
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: TimeoutInterceptor,
-    },
+    // {
+    //   provide: APP_INTERCEPTOR,
+    //   useClass: TimeoutInterceptor,
+    // },
     Logger,
   ],
 })
-export class AppModule {}
+export class AppModule { }

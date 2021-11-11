@@ -17,7 +17,7 @@ import { RType } from '../../utils/R';
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
-  ) {}
+  ) { }
 
   // 登录
   @ApiBody({

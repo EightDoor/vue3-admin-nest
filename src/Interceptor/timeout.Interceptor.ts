@@ -7,13 +7,13 @@ import {
 } from 'rxjs';
 
 @Injectable()
-export class TimeoutInterceptor implements NestInterceptor {
+export class implements NestInterceptor {
   intercept(
     context: ExecutionContext,
     next: CallHandler<any>,
   ): Observable<any> | Promise<Observable<any>> {
     return next.handle().pipe(
-      timeout(5000),
+      timeout(10000),
       catchError((err) => {
         if (err instanceof TimeoutError) {
           return throwError(new RequestTimeoutException());

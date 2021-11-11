@@ -42,7 +42,7 @@ export class AuthService {
     @InjectRepository(SysMenu)
     private readonly menu: Repository<SysMenu>,
     @InjectRepository(SysUser) private readonly userRepo: Repository<SysUser>,
-  ) {}
+  ) { }
 
   async validateUser(
     username: string,
