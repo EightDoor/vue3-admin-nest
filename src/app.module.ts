@@ -5,6 +5,7 @@ import { ShareModule } from './share/share.module';
 import { CoreModule } from './core/core.module';
 import { BusinessModule } from './business/business.module';
 import LoggingInterceptor from './Interceptor/logging.interceptor';
+import { TimeoutInterceptor } from './Interceptor/timeout.Interceptor';
 
 @Module({
   imports: [
@@ -20,6 +21,10 @@ import LoggingInterceptor from './Interceptor/logging.interceptor';
     {
       provide: APP_INTERCEPTOR,
       useClass: LoggingInterceptor,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TimeoutInterceptor,
     },
     Logger,
   ],
