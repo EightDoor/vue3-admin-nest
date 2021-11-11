@@ -20,7 +20,7 @@ export class SysMenu extends BaseColumn {
     type: 'int',
     comment: '父级id',
   })
-  parentId!: number;
+    parentId!: number;
 
   @ApiProperty({
     description: '菜单名称',
@@ -35,7 +35,7 @@ export class SysMenu extends BaseColumn {
     length: 32,
     comment: '菜单名称',
   })
-  title!: number;
+    title!: number;
 
   @ApiProperty({
     description: '菜单类型： 1. 目录 2. 菜单  3. 按钮',
@@ -49,7 +49,7 @@ export class SysMenu extends BaseColumn {
     type: 'tinyint',
     comment: '菜单类型： 1. 目录 2. 菜单  3. 按钮',
   })
-  type!: number;
+    type!: number;
 
   @ApiProperty({
     description: '排序',
@@ -63,7 +63,7 @@ export class SysMenu extends BaseColumn {
     type: 'int',
     comment: '排序',
   })
-  orderNum!: number;
+    orderNum!: number;
 
   @ApiProperty({
     description: '权限标识',
@@ -76,7 +76,7 @@ export class SysMenu extends BaseColumn {
     comment: '权限标识',
     nullable: true,
   })
-  perms!: string;
+    perms!: string;
 
   @ApiProperty({
     description: '菜单标识',
@@ -91,21 +91,12 @@ export class SysMenu extends BaseColumn {
     length: 100,
     comment: '菜单标识',
   })
-  name!: string;
-
+    name!: string;
 
   @ApiProperty({
     description: '重定向地址',
     required: false,
   })
-  @Column({
-    name: 'redirect',
-    type: 'varchar',
-    length: 100,
-    comment: '重定向地址',
-    nullable: true,
-  })
-  redirect!: string;
 
   @ApiProperty({
     description: '图标',
@@ -118,7 +109,7 @@ export class SysMenu extends BaseColumn {
     comment: '图标',
     nullable: true,
   })
-  icon!: string;
+    icon!: string;
 
   @ApiProperty({
     description: '是否隐藏',
@@ -130,7 +121,7 @@ export class SysMenu extends BaseColumn {
     comment: '是否隐藏',
     nullable: true,
   })
-  hidden!: string;
+    hidden!: string;
 
   @ApiProperty({
     description: '是否首页',
@@ -142,5 +133,5 @@ export class SysMenu extends BaseColumn {
     comment: '是否首页',
     nullable: true,
   })
-  isHome!: string;
+    isHome!: string;
 }
