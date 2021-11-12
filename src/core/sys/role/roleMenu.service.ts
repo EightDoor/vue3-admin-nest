@@ -13,7 +13,7 @@ export class RoleMenuService {
   constructor(
     @InjectRepository(SysRoleMenu)
     private readonly repo: Repository<SysRoleMenu>,
-  ) {}
+  ) { }
 
   @Transaction()
   // 角色关联菜单
@@ -32,14 +32,13 @@ export class RoleMenuService {
     return manager.save(SysRoleMenu, body);
   }
 
-  async getRoleMenus(id: string): Promise<SysRoleMenu> {
-    let result: SysRoleMenu = { id: 0 };
+  async getRoleMenus(id: string): Promise<SysRoleMenu | null> {
     const value = await this.repo.findOne({
       where: { roleId: id },
     });
     if (value) {
-      result = value;
+      return value
     }
-    return result;
+    return null;
   }
 }

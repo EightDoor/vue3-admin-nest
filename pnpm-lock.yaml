@@ -13,6 +13,7 @@ specifiers:
   '@nestjs/testing': ^8.2.0
   '@nestjs/typeorm': ^8.0.2
   '@nestjsx/crud': ^5.0.0-alpha.3
+  '@nestjsx/crud-request': ^5.0.0-alpha.3
   '@nestjsx/crud-typeorm': ^5.0.0-alpha.3
   '@types/jest': 27.0.2
   '@types/lodash': ^4.14.176
@@ -66,6 +67,7 @@ dependencies:
   '@nestjs/swagger': 5.1.4_7d99d65164d56b8d16eac131f3b04b0b
   '@nestjs/typeorm': 8.0.2_160c9b6fbeb930c4f83acf994aefe5c2
   '@nestjsx/crud': 5.0.0-alpha.3_113d387208af7a399f8469d1c934d79f
+  '@nestjsx/crud-request': 5.0.0-alpha.3
   '@nestjsx/crud-typeorm': 5.0.0-alpha.3
   class-transformer: 0.4.0
   class-validator: 0.13.1
