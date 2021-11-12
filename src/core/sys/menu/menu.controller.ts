@@ -10,6 +10,14 @@ import { MenuService } from './menu.service';
   model: {
     type: SysMenu,
   },
+  query: {
+    sort: [
+      {
+        field: 'order_num',
+        order: 'ASC',
+      }
+    ]
+  }
 })
 @UseGuards(JwtAuthGuard)
 @Controller('menu')

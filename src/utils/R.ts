@@ -1,7 +1,6 @@
 // 统一请求返回的数据
 
-import { Repository } from "typeorm";
-
+import { Repository } from 'typeorm';
 
 export interface RType<T = any> {
   data: T
@@ -28,7 +27,8 @@ export default {
   async list<T = any>(repo: Repository<T>, query: ParamsType, code?: number): Promise<RType> {
     const total = await repo.createQueryBuilder().getCount();
     const { page, limit, params } = query;
-    const data = await repo.createQueryBuilder().where(params).limit(limit).skip(page ?? 1 - 1).getMany()
+    const data = await repo.createQueryBuilder().where(params).limit(limit).skip(page ?? 1 - 1)
+      .getMany();
     return {
       data: {
         data,
@@ -36,8 +36,7 @@ export default {
         page: Number(query?.page) ?? 1,
         limit: Number(query?.limit) ?? 1,
       },
-      code: 0,
-    }
-  }
+      code: code ?? 0,
+    };
+  },
 };
-
