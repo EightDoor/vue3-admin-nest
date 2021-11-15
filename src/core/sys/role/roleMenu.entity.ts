@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { CrudValidationGroups } from '@nestjsx/crud';
 import { IsNotEmpty } from 'class-validator';
-import { BaseColumn } from 'src/common/baseModal';
+import { BaseColumn } from 'src/common_model/baseModal';
 import { Column, Entity } from 'typeorm';
 
 const { CREATE, UPDATE } = CrudValidationGroups;
