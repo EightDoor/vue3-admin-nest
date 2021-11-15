@@ -15,8 +15,8 @@ export default class UploadController {
   }
 
   @Get('/:id')
-  async getToken(@Param() id: string) {
-    if (id === 'zk') {
+  async getToken(@Param() data: { id: string }) {
+    if (data.id === 'zk') {
       const result = await this.uploadService.getToken();
       return R.success(result);
     }
