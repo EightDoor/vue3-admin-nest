@@ -1,11 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateQueryParams } from '@nestjsx/crud-request'
-import { SysUserRole } from './userRole.entity';
+import { CreateQueryParams } from '@nestjsx/crud-request';
 import R, { RType } from 'src/utils/R';
+import { SysUserRole } from './userRole.entity';
 import { SysUserRoleUpdate } from './user.controller';
-
 
 @Injectable()
 export class SysUserRoleService {
@@ -20,13 +19,13 @@ export class SysUserRoleService {
     return R.list<SysUserRole>(this.repo, {
       page: query.page,
       limit: query.limit,
-      params: `user_id=${id}`
-    })
+      params: `user_id=${id}`,
+    });
   }
 
   async setUserRole(body: SysUserRoleUpdate): Promise<boolean> {
     // 存在先删除
-    await this.repo.createQueryBuilder().where(`user_id = ${body.userId}`).delete().execute()
+    await this.repo.createQueryBuilder().where(`user_id = ${body.userId}`).delete().execute();
     for (let i = 0; i < body.data.length; i += 1) {
       const item = body.data[i];
       await this.repo.save(item);
