@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import {
   auth, rs, conf, zone,
 } from 'qiniu';
-import Config from '../../../config/index';
+import Config from '../../config';
 
 @Injectable()
 export default class UploadService {

@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { CrudValidationGroups } from '@nestjsx/crud';
-import { BaseColumn } from 'src/common/baseModal';
+import { BaseColumn } from 'src/common_model/baseModal';
 import { Entity, Column } from 'typeorm';
 import { IsNotEmpty } from 'class-validator';
 
@@ -31,7 +31,7 @@ export class SysUser extends BaseColumn {
     //   }
     // }
   })
-  passWord!: string;
+    passWord!: string;
 
   @ApiProperty({
     description: '账户',
@@ -42,7 +42,7 @@ export class SysUser extends BaseColumn {
     name: 'account',
     comment: '账户',
   })
-  account!: string;
+    account!: string;
 
   @ApiProperty({
     description: '昵称',
@@ -53,7 +53,7 @@ export class SysUser extends BaseColumn {
     name: 'nick_name',
     comment: '昵称',
   })
-  nickName!: string;
+    nickName!: string;
 
   @ApiProperty({
     description: '邮箱',
@@ -65,7 +65,7 @@ export class SysUser extends BaseColumn {
     comment: '邮箱',
     nullable: true,
   })
-  email?: string;
+    email?: string;
 
   @ApiProperty({
     description: '所属状态是否有效  1是有效 0是失效',
@@ -77,7 +77,7 @@ export class SysUser extends BaseColumn {
     comment: '所属状态是否有效  1是有效 0是失效',
     type: 'tinyint',
   })
-  status!: number;
+    status!: number;
 
   @ApiProperty({
     description: '头像',
@@ -89,7 +89,7 @@ export class SysUser extends BaseColumn {
     comment: '头像',
     nullable: true,
   })
-  avatar?: string;
+    avatar?: string;
 
   @ApiProperty({
     description: '部门id',
@@ -100,7 +100,7 @@ export class SysUser extends BaseColumn {
     name: 'dept_id',
     comment: '部门id',
   })
-  deptId!: string;
+    deptId!: string;
 
   @ApiProperty({
     description: '手机号码',
@@ -112,5 +112,5 @@ export class SysUser extends BaseColumn {
     comment: '手机号码',
     nullable: true,
   })
-  phoneNum?: string;
+    phoneNum?: string;
 }

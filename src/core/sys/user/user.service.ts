@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import utils from 'src/utils/index';
 import { SysUser } from './user.entity';
 import { SysUserRole } from './userRole.entity';
+import { UpdatePasswdType } from './user.controller';
 
 @Injectable()
 export class UserService extends TypeOrmCrudService<SysUser> {
@@ -13,7 +14,7 @@ export class UserService extends TypeOrmCrudService<SysUser> {
     @InjectRepository(SysUser) repo: Repository<SysUser>,
     @InjectRepository(SysUserRole)
     private readonly userRole: Repository<SysUserRole>,
-    private readonly logger:Logger,
+    private readonly logger: Logger,
   ) {
     super(repo);
   }
@@ -45,5 +46,13 @@ export class UserService extends TypeOrmCrudService<SysUser> {
       .execute();
     const result = await this.repo.delete(params.id);
     return result.raw;
+  }
+
+  async updatePasswd(data: UpdatePasswdType): Promise<boolean> {
+    const result = await this.repo.update(data.id, { passWord: utils.PasswordEncryPtion(data.password) });
+    if (result.affected && result.affected > 0) {
+      return true;
+    }
+    return false;
   }
 }
