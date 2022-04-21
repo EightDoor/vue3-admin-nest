@@ -22,7 +22,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   // TODO 待优化 存储到redis中  减少查询次数
   async validate(payload: Payload): Promise<Payload> {
     // 查询用户是否有效
-    const user = await this.userRepo.findOne(payload.userId);
+    const user = await this.userRepo.findOneById(payload.userId ?? '');
     if (!user?.id) {
       throw new UnauthorizedException();
     }

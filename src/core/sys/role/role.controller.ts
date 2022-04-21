@@ -28,7 +28,7 @@ export class RoleController implements CrudController<SysRole> {
     @Body() body: SysRoleMenu,
     @TransactionManager() manager: EntityManager,
   ): Promise<RType<SysRoleMenu>> {
-    const result = await this.menu.RoleRelationMenu(body, manager)
+    const result = await this.menu.RoleRelationMenu(body, manager);
     return R.success(result);
   }
 
