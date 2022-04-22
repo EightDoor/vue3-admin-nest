@@ -88,7 +88,7 @@ export class AuthService {
 
   async getUserInfo(payload: Payload): Promise<RType<GetUserInfoR>> {
     // 查询用户是否有效
-    const user = await this.userRepo.findOneById(payload.userId ?? '');
+    const user = await this.userRepo.findOne(payload.userId ?? '');
     // 查询用户的拥有角色
     const userRoles = await this.repo
       .createQueryBuilder()
