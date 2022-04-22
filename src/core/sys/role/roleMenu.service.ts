@@ -34,10 +34,12 @@ export class RoleMenuService {
 
   async getRoleMenus(id: string): Promise<SysRoleMenu | null> {
     const value = await this.repo.findOne({
-      where: { roleId: id },
+      where: {
+        roleId: Number(id),
+      },
     });
     if (value) {
-      return value
+      return value;
     }
     return null;
   }
